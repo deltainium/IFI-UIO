@@ -15,8 +15,8 @@ public class Verden{
 	}
 
 	public void tegn(){
+		System.out.println("Generasjon nr. "+genNr+":");
 		rutenett.tegnRutenett();
-		System.out.println("Generasjon nr. "+genNr);
 		System.out.println("Antall levende celler: "+rutenett.antallLevende()+"\n");
 	}
 

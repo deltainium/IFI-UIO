@@ -3,6 +3,11 @@ import java.util.Scanner;
 public class GameOfLife{
 
 	public static void main(String[] args){
+		for (byte i = 0; i < 127; i++){
+			System.out.println();
+		}
+
+		System.out.flush();
 		System.out.println("Velkommen til Game of Life!");
 		Scanner input = new Scanner(System.in); // TODO input type verification
 
@@ -14,14 +19,23 @@ public class GameOfLife{
 		
 		int kolonner = input.nextInt();
 
-		input.close();
 		Verden spill = new Verden(rader, kolonner);
 		spill.tegn();
 		
+		String choice = "";
 
-		for (int i = 0; i < 3; i++){
+		while (choice != "q"){
 			spill.oppdatering();
 			spill.tegn();
+			System.out.println("Trykk ENTER for å fortsette, eller input q for å avslutte");
+			choice = input.nextLine().strip().toLowerCase();
+			if (choice.isEmpty()){
+				continue;
+			}
+			else{
+				input.close();
+				break;
+			}
 		}
 	}
 
