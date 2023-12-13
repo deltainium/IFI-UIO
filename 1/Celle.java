@@ -57,10 +57,10 @@ public class Celle{
 	}
 
 	public void oppdaterStatus(){
-		if (antNaboer == 3){
+		if (antLevendeNaboer == 3){
 			levende = true;
 		}
-		else if (antNaboer > 3 || antNaboer < 2){
+		else if (antLevendeNaboer > 3 || antLevendeNaboer < 2){
 			levende = false;
 		}
 	}
