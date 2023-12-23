@@ -76,7 +76,7 @@ abstract class Lenkeliste <E> implements Liste <E>{
 
 	public E fjern(){
 		if (forste == null){
-			return null;
+			throw new UgyldigListeindeks(0);
 		}
 		else if (forste.hentNeste() == null){
 			E data = forste.hentData();
