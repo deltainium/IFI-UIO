@@ -6,10 +6,10 @@ abstract class Lenkeliste <E> implements Liste <E>{
 	int stor;
 	Node<E> forste;
 
-	private class Node<E>{
+	public class Node<E>{
 
-			private E data;
-			private Node<E> neste;
+			public E data;
+			public Node<E> neste;
 
 			public Node(){
 				this.neste = null;
@@ -48,8 +48,8 @@ abstract class Lenkeliste <E> implements Liste <E>{
 		Node<E> elem = new Node<E>();
 		elem.setData(data);
 
-		if (forste == null){
-			forste = elem;
+		if (this.forste == null){
+			this.forste = elem;
 		}
 		else{
 			boolean status = false;
@@ -75,22 +75,34 @@ abstract class Lenkeliste <E> implements Liste <E>{
 	}
 
 	public E fjern(){
+		if (forste == null){
+			return null;
+		}
+		else if (forste.hentNeste() == null){
+			E data = forste.hentData();
+			forste = null;
+			this.stor -= 1;
+			return data;
+		}
+		else{
 		E data = this.forste.hentData();
 		forste = forste.hentNeste();
+		this.stor -= 1;
 		return data;
+		}
 	}
 	
 	public String toString(){
 		Node<E> neste = forste;
 		String str = "";
 
-		for (int i = 0; i == this.stor; i++){
-			str += String.valueOf(neste.hentData());
+		while (neste != null){
+			str += neste.hentData();
 			str += " ";
 			neste = neste.hentNeste();
 		}
 		
-		return str.substring(0, str.length()-1);
+		return str.substring(0, str.length());
 	}
 
 }
