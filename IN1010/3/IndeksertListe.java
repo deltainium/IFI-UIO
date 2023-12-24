@@ -4,7 +4,7 @@ public class IndeksertListe<E> extends Lenkeliste<E>{
 		this.stor++;
 		// 0<=pos<=this.stor
 		if (pos < 0 || pos > stor){
-			throw new UgyldigListeindeks(pos);  
+			throw new UgyldigListeindeks(pos);
 		}
 
 		Node<E> nytt = new Node<E>();
@@ -61,6 +61,10 @@ public class IndeksertListe<E> extends Lenkeliste<E>{
 	}
 	
 	public void sett (int pos, E x){
+		if (pos < 0 || pos >= this.stor){
+			throw new UgyldigListeindeks(pos);
+		}
+
 		int teller = 0;
 		Node<E> denne = this.forste;
 
@@ -94,6 +98,10 @@ public class IndeksertListe<E> extends Lenkeliste<E>{
 	}
 
 	public E fjern (int pos){
+		if (pos < 0 || pos >= this.stor){
+			throw new UgyldigListeindeks(pos);
+		}
+
 		this.stor--;
 
 		int teller = 0;
