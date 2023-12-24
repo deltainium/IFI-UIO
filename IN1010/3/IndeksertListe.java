@@ -1,6 +1,7 @@
 public class IndeksertListe<E> extends Lenkeliste<E>{
 
 	public void leggTil(int pos, E x){
+		this.stor++;
 		// 0<=pos<=this.stor
 		if (pos < 0 || pos > stor){
 			throw new UgyldigListeindeks(pos);  
@@ -92,7 +93,7 @@ public class IndeksertListe<E> extends Lenkeliste<E>{
 	}
 
 	public E fjern (int pos){
-		this.stor -= 1;
+		this.stor--;
 
 		int teller = 0;
 		Node<E> denne = this.forste;
