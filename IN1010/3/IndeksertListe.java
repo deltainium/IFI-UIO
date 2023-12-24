@@ -47,6 +47,7 @@ public class IndeksertListe<E> extends Lenkeliste<E>{
 						Node<E> kopi = new Node<E>();
 						kopi.setData(x);
 						kopi.setNeste(denne.hentNeste());
+						denne.setNeste(kopi);
 						break;
 					}
 					else {
