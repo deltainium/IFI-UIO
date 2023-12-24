@@ -83,6 +83,10 @@ public class IndeksertListe<E> extends Lenkeliste<E>{
 	}
 
 	public E hent (int pos){
+		if (pos < 0 || pos >= this.stor){
+			throw new UgyldigListeindeks(pos);
+		}
+
 		int teller = 0;
 		Node<E> denne = this.forste;
 
