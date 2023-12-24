@@ -19,14 +19,16 @@ public class IndeksertListe<E> extends Lenkeliste<E>{
 
 		Node<E> denne = this.forste;
 
-		while (denne.hentNeste() != nytt){
+		while (true){
 			if (teller == pos-1){
 				Node<E> kopi = new Node<E>();
 				kopi.setData(denne.hentNeste().hentData());
 				kopi.setNeste(denne.hentNeste().hentNeste());
 				denne.setNeste(nytt);
 				nytt.setNeste(kopi);
+				break;
 			}
+			teller += 1;
 			denne = denne.hentNeste();
 		}
 	}

@@ -59,6 +59,7 @@ abstract class Lenkeliste <E> implements Liste <E>{
 			while (status == false){
 				if (neste == null){
 					denne.setNeste(elem);
+					status = true;
 				}
 				else{
 					denne = denne.hentNeste();
