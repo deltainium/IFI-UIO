@@ -1,36 +1,61 @@
 public class IndeksertListe<E> extends Lenkeliste<E>{
 
 	public void leggTil(int pos, E x){
-		String input = pos + "";
-
-		if (input.isEmpty()){
-			pos = (this.stor-1);
+		// 0<=pos<=this.stor
+		if (pos < 0 || pos > stor){
+			throw new UgyldigListeindeks(pos);  
 		}
 
-		this.stor += 1;
-
-		int teller = 0;
 		Node<E> nytt = new Node<E>();
 		nytt.setData(x);
-
+		
 		if (pos == 0){
-			this.forste = nytt;;
-		}
-
-		Node<E> denne = this.forste;
-
-		while (true){
-			if (teller == pos-1){
-				Node<E> kopi = new Node<E>();
-				kopi.setData(denne.hentNeste().hentData());
-				kopi.setNeste(denne.hentNeste().hentNeste());
-				denne.setNeste(nytt);
-				nytt.setNeste(kopi);
-				break;
+			if (this.forste == null){
+				this.forste = nytt;
 			}
-			teller += 1;
-			denne = denne.hentNeste();
+			else{
+				Node<E> kopi = new Node<E>();
+				kopi.setData(this.forste.hentData());
+				kopi.setNeste(this.forste.hentNeste());
+
+				nytt.setNeste(kopi);
+				this.forste = nytt;
+			}
 		}
+
+		else{
+			Node<E> denne = this.forste;
+			int teller = 0;
+
+			if (pos == stor){
+				while (true) {
+					if (teller == pos-1){
+						denne.setNeste(nytt);
+						break;
+					}
+					else{
+						denne = denne.hentNeste();
+						teller++;
+					}
+				}
+			}
+
+			else{
+				while (true){
+					if (teller == pos-1){
+						Node<E> kopi = new Node<E>();
+						kopi.setData(x);
+						kopi.setNeste(denne.hentNeste());
+						break;
+					}
+					else {
+						denne = denne.hentNeste();
+						teller++;
+					}
+				}
+			}
+		}
+
 	}
 	
 	public void sett (int pos, E x){
