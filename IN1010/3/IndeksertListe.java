@@ -26,22 +26,22 @@ public class IndeksertListe<E> extends Lenkeliste<E>{
 
 		else{
 			Node<E> denne = this.forste;
-			int teller = 0;
 
 			if (pos == stor){
 				while (true) {
-					if (teller == pos-1){
+					if (denne.hentNeste() == null){
 						denne.setNeste(nytt);
 						break;
 					}
 					else{
 						denne = denne.hentNeste();
-						teller++;
 					}
 				}
 			}
 
 			else{
+				int teller = 0;
+
 				while (true){
 					if (teller == pos-1){
 						Node<E> kopi = new Node<E>();
