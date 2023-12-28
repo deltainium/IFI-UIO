@@ -18,37 +18,48 @@ public class Prioritetskoe<E extends Comparable<E>> extends Lenkeliste<E>{
 			Node<E> elem = forste;
 			E elem_data = elem.hentData();
 
-			while (true)
-			{
-				if (elem.hentNeste() != null)
-				{
+			if (data.compareTo(this.forste.hentData()) <=0){
+				Node<E> kopi = new Node<E>();
+				kopi.setNeste(this.forste.hentNeste());
+				kopi.setData(this.forste.hentData());
+				nytt.setNeste(kopi);
+				this.forste = nytt;
+			}
+			
+			else{
 
-					if (data.compareTo(elem.hentNeste().hentData()) <= 0) // if data comes right after elem
-					{	
-						Node<E> kopi = new Node<E>();
-						kopi.setData(elem.hentNeste().hentData());
-						elem.setNeste(nytt);
-						nytt.setNeste(kopi);
-						break;
+				while (true)
+				{
+					if (elem.hentNeste() != null)
+					{
+
+						if (data.compareTo(elem.hentNeste().hentData()) <= 0) // if data comes right after elem
+						{	
+							Node<E> kopi = new Node<E>();
+							kopi.setData(elem.hentNeste().hentData());
+							kopi.setNeste(elem.hentNeste().hentNeste());
+							elem.setNeste(nytt);
+							nytt.setNeste(kopi);
+							break;
+						}
+
+						else
+						{
+							elem = elem.hentNeste();
+						}
 					}
 
 					else
 					{
-						elem = elem.hentNeste();
-						elem_data = elem.hentData();
+						break;
 					}
 				}
-
-				else
-				{
-					break;
-				}
+			
+			if (nytt.hentNeste() == null)
+			{
+				elem.setNeste(nytt);
 			}
-		
-		if (nytt.hentNeste() == null)
-		{
-			elem.setNeste(nytt);
-		}
+			}
 		}
 	}
 }
