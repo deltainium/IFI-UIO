@@ -9,6 +9,10 @@ abstract class Legemiddel{
 		this.virkestoff = virkestoff;
 	}
 
+	public String hentNavn(){
+		return this.navn;
+	}
+
 	public int hentPris(){
 		return this.pris;
 	}
