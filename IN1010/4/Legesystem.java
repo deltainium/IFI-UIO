@@ -16,7 +16,7 @@ public class Legesystem{
 		String gruppe = "";
 
 		while (skanner.hasNextLine()){ // TODO method should be using skrivResept method via lege class
-			String line = skanner.nextLine();
+			String line = skanner.nextLine(); // TODO error handling of invalid formatting reading file
 
 			if (line.charAt(0) == '#'){
 				String[] kuttet = line.split(" ");
