@@ -12,7 +12,7 @@ public class Legesystem{
 
 	public void lesFraFil(String filnavn) throws FileNotFoundException{
 		File fil = new File(filnavn);
-		Scanner skanner = new Scanner(fil);
+		Scanner skanner = new Scanner(fil); // TODO Find a way to close the scanner sensibly
 		String gruppe = "";
 
 		while (skanner.hasNextLine()){
@@ -123,7 +123,6 @@ public class Legesystem{
 					lege.leggTilResept(resept);
 				}
 			}
-			skanner.close();
 		}
 	}
 }
