@@ -15,7 +15,7 @@ public class Legesystem{
 		Scanner skanner = new Scanner(fil); // TODO Find a way to close the scanner sensibly
 		String gruppe = "";
 
-		while (skanner.hasNextLine()){
+		while (skanner.hasNextLine()){ // TODO method should be using skrivResept method via lege class
 			String line = skanner.nextLine();
 
 			if (line.charAt(0) == '#'){
