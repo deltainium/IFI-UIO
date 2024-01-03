@@ -16,4 +16,8 @@ public class Pasient{
 		resepter.leggTil(res);
 	}
 
+	public int hentIdt(){
+		return this.id;
+	}
+
 }
