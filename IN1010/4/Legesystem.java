@@ -72,13 +72,58 @@ public class Legesystem{
 
 			else if (gruppe == "Resepter"){
 				String[] kuttet = line.split(",");
+				int middelNum = Integer.parseInt(kuttet[0]);
+				String legeNavn = kuttet[1];
+				int pasientId = Integer.parseInt(kuttet[2]);
+				String type = kuttet[3];
+
+				Lege lege = new Lege("temp");
+				Legemiddel middel = new Vanlig("temp", 0, 0.0);
+				Pasient pasient = new Pasient("temp", "temp");
+
+				for (Lege sjekkLege: this.leger){
+					if (sjekkLege.hentNavn() == legeNavn){
+						lege = sjekkLege;
+						break;
+					}
+				}
+
+				for (Legemiddel sjekkMid: this.middler){
+					if (sjekkMid.hentId() == middelNum){
+						middel = sjekkMid;
+					}
+				}
+
+				for (Pasient sjekkPas: this.pasienter){
+					if (sjekkPas.hentId() == pasientId){
+						pasient = sjekkPas;
+					}
+				}
+
+				if (type == "hvit"){
+					int reit = Integer.parseInt(kuttet[4]);
+					HvitResept resept = new HvitResept(middel, lege, pasient, reit);
+					lege.leggTilResept(resept);
+				}
+
+				else if (type == "blaa"){
+					int reit = Integer.parseInt(kuttet[4]);
+					BlaaResept resept = new BlaaResept(middel, lege, pasient, reit);
+					lege.leggTilResept(resept);
+				}
+
+				else if (type == "militaer"){
+					MilResept resept = new MilResept(middel, lege, pasient);
+					lege.leggTilResept(resept);
+				}
+
+				else{
+					int reit = Integer.parseInt(kuttet[4]);
+					PResept resept = new PResept(middel, lege, pasient, reit);;
+					lege.leggTilResept(resept);
+				}
 			}
-			
 			skanner.close();
-
 		}
-
 	}
-
 }
-
